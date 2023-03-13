@@ -254,8 +254,8 @@ def multilabel_without_permind_predict(predictions):
 
 # Check a saved model against one of the ASCAD databases Attack traces
 def check_model(model_file, ascad_database, num_traces=2000, target_byte=2, multilabel=0, simulated_key=0, save_file=""):
-	model_file_abs_name = "cnn_best_ascad_desync0_epochs75_classes256_batchsize200.h5"
-	ascad_database_abs_name = "ASCAD.h5"
+	model_file_abs_name = model_file.split("/")[-1]
+	ascad_database_abs_name = ascad_database.split("/")[-1]
 	check_file_exists(model_file)
 	check_file_exists(ascad_database)
 	# Load profiling and attack data and metadata from the ASCAD database
