@@ -22,7 +22,7 @@ def check_file_exists(file_path):
 		sys.exit(-1)
 	return
 
-def lstm_best(tf.keras.Model):
+def lstm_best(num_units, num_classes):
 	layers = [tf.keras.layers.LSTM(units=num_units, activation='tanh', input_shape=(None, num_features)), tf.keras.layers.Dense(units=num_classes, activation='softmax')]
 	model = tf.keras.Sequential(layers)
 	model.compile(loss="categorical_crossentropy", optimizer=Adam(), metrics=['accuracy'])
