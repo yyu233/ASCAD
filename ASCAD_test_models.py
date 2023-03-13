@@ -314,7 +314,8 @@ def check_model(model_file, ascad_database, num_traces=2000, target_byte=2, mult
 		# We plot the results
 		x = [ranks[i][0] for i in range(0, ranks.shape[0])]
 		y = [ranks[i][1] for i in range(0, ranks.shape[0])]
-		plt.title('Performance of '+model_file+' against '+ascad_database)
+		plt.figure(figsize=(16,32))
+		plt.title('Performance of '+model_file+ '\n' + ' against '+ '\n' + ascad_database, loc='center', wrap = True, fontsize=10)
 		plt.xlabel('number of traces')
 		plt.ylabel('rank')
 		plt.grid(True)
