@@ -293,7 +293,7 @@ def check_model(model_file, ascad_database, num_traces=2000, target_byte=2, mult
 			# We plot the results
 			x_i = [ranks_i[i][0] for i in range(0, ranks_i.shape[0])]
 			y_i = [ranks_i[i][1] for i in range(0, ranks_i.shape[0])]
-			fig = plt.figure(figsize=(16,32))
+			fig = plt.figure(figsize=(16,16))
 			ax = fig.add_subplot(1,1,1)
 			plt.plot(x_i, y_i, label="key_"+str(target_byte))
 			ax.set_title('Performance of '+model_file+'\n'+' against '+ '\n' + ascad_databas)
@@ -314,8 +314,8 @@ def check_model(model_file, ascad_database, num_traces=2000, target_byte=2, mult
 		# We plot the results
 		x = [ranks[i][0] for i in range(0, ranks.shape[0])]
 		y = [ranks[i][1] for i in range(0, ranks.shape[0])]
-		plt.figure(figsize=(16,32))
-		plt.title('Performance of '+model_file+ '\n' + ' against '+ '\n' + ascad_database, loc='center', wrap = True, fontsize=10)
+		plt.figure(figsize=(16,16))
+		plt.title('Performance of '+model_file+ '\n' + ' against '+ '\n' + ascad_database, loc='center', wrap = True)
 		plt.xlabel('number of traces')
 		plt.ylabel('rank')
 		plt.grid(True)
