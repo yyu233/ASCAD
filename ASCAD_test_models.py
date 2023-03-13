@@ -254,6 +254,8 @@ def multilabel_without_permind_predict(predictions):
 
 # Check a saved model against one of the ASCAD databases Attack traces
 def check_model(model_file, ascad_database, num_traces=2000, target_byte=2, multilabel=0, simulated_key=0, save_file=""):
+	model_file_abs_name = "cnn_best_ascad_desync0_epochs75_classes256_batchsize200.h5"
+	ascad_database_abs_name = "ASCAD.h5"
 	check_file_exists(model_file)
 	check_file_exists(ascad_database)
 	# Load profiling and attack data and metadata from the ASCAD database
@@ -293,10 +295,10 @@ def check_model(model_file, ascad_database, num_traces=2000, target_byte=2, mult
 			# We plot the results
 			x_i = [ranks_i[i][0] for i in range(0, ranks_i.shape[0])]
 			y_i = [ranks_i[i][1] for i in range(0, ranks_i.shape[0])]
-			fig = plt.figure(figsize=(10,10))
+			fig = plt.figure(figsize=(8,8))
 			ax = fig.add_subplot(1,1,1)
 			plt.plot(x_i, y_i, label="key_"+str(target_byte))
-			ax.set_title('Performance of '+model_file+'\n'+' against '+ '\n' + ascad_databas)
+			ax.set_title('Performance of '+model_file_abs_name+'\n'+' against '+ '\n' + ascad_database_abs_name)
 		#plt.title('Performance of '+model_file+'\n'+' against '+ascad_database, loc='center', wrap=True, fontsize=10)
 		plt.xlabel('number of traces')
 		plt.ylabel('rank')
@@ -314,8 +316,8 @@ def check_model(model_file, ascad_database, num_traces=2000, target_byte=2, mult
 		# We plot the results
 		x = [ranks[i][0] for i in range(0, ranks.shape[0])]
 		y = [ranks[i][1] for i in range(0, ranks.shape[0])]
-		plt.figure(figsize=(10,10))
-		plt.title('Performance of '+model_file+ '\n' + ' against '+ '\n' + ascad_database, loc='center', wrap = True)
+		plt.figure(figsize=(8,8))
+		plt.title('Performance of '+model_file_abs_name+ '\n' + ' against '+ '\n' + ascad_database_abs_name, loc='center', wrap = True)
 		plt.xlabel('number of traces')
 		plt.ylabel('rank')
 		plt.grid(True)
@@ -355,7 +357,7 @@ def read_parameters_from_file(param_filename):
 if __name__ == "__main__":
 	if len(sys.argv)!=2:
 		#default parameters values
-		model_file="ATMEGA_AES_v1/ATM_AES_v1_fixed_key/ASCAD_data/ASCAD_trained_models/cnn_best_ascad_desync0_epochs75_classes256_batchsize200.h5"
+		model_file="ATMEGA_AES_v1/ATM_AES_v1_fixed_key/ASCAD_data/ASCAD_trained_models$/cnn_best_ascad_desync0_epochs75_classes256_batchsize200.h5"
 		ascad_database=traces_file="ATMEGA_AES_v1/ATM_AES_v1_fixed_key/ASCAD_data/ASCAD_databases/ASCAD.h5"
 		num_traces=2000
 		target_byte=2
