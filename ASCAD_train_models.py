@@ -22,6 +22,12 @@ def check_file_exists(file_path):
 		sys.exit(-1)
 	return
 
+def lstm_best(tf.keras.Model):
+	layers = [tf.keras.layers.LSTM(units=num_units, activation='tanh', input_shape=(None, num_features)), tf.keras.layers.Dense(units=num_classes, activation='softmax')]
+	model = tf.keras.Sequential(layers)
+	model.compile(loss="categorical_crossentropy", optimizer=Adam(), metrics=['accuracy'])
+	return model
+
 #### MLP Best model (6 layers of 200 units)
 def mlp_best(node=200,layer_nb=6,input_dim=1400):
 	model = Sequential()
@@ -374,7 +380,9 @@ if __name__ == "__main__":
 	(X_profiling, Y_profiling), (X_attack, Y_attack) = load_ascad(ascad_database)
 
 	#get network type
-	if(network_type=="mlp"):
+	if(network_type=='lstm'):
+		best_model = lstm_best(num_units=len(X_profiling[0]), num_classes=256)
+	elif(network_type=="mlp"):
 		best_model = mlp_best(input_dim=len(X_profiling[0]))
 	elif(network_type=="cnn"):
 		best_model = cnn_best(input_dim=len(X_profiling[0]))
